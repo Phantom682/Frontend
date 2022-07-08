@@ -1,0 +1,21 @@
+.form {
+    margin-top: 50px;
+}
+
+.btn {
+    background-color: #769FCD;
+    color: white;
+    display:inline-block;
+    padding: 0 60px 0;
+    margin-top: 5px;
+    margin-right: 57px;
+}
+
+
+.flex {
+    margin-top: 20px;
+}  
+
+.para {
+    margin-top: 20px;
+}

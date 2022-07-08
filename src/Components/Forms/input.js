@@ -62,7 +62,7 @@ function Demo() {
 
   return (
     <Box className="form" sx={{ maxWidth: 350 }} mx="auto">
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit((values) => login(values))}>
         <div className="row">
           <TextInput
             className=" col-md-6"
