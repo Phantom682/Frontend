@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { PasswordInput, Progress, Text, Popover, Box } from '@mantine/core';
 import "./Login.css";
 
-function PasswordRequirement({ meets, label }: { meets: boolean; label: string }) {
+function PasswordRequirement({ meets, label }: { meets: boolean; label: string }, props) {
   return (
     <Text
       color={meets ? 'teal' : 'red'}
