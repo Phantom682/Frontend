@@ -2,6 +2,7 @@ import { z } from "zod";
 import { useForm, zodResolver } from "@mantine/form";
 import { PasswordInput, TextInput, Button, Box, Group } from "@mantine/core";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 const schema = z.object({
   username: z
@@ -13,7 +14,10 @@ const schema = z.object({
   }),
 });
 
+
+
 function Login() {
+  let Navigate = useNavigate();
 
   const form = useForm({
     schema: zodResolver(schema),
@@ -23,9 +27,26 @@ function Login() {
     },
   });
 
+  async function login(values) {
+
+    console.log(values);
+  
+    const result = await fetch("http://localhost:5000/user/login_user", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    const data = await result.json();
+    console.log(data);
+    // Navigate("/", { replace: true });
+  }
+
   return (
     <Box sx={{ maxWidth: 340 }} mx="auto">
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit((values) => login(values))}>
         <TextInput
           className="user"
           required
@@ -52,17 +73,11 @@ function Login() {
         </div>
 
         <Group position="center" mt="xl">
-          <Button className="btn" type="submit" >
+          <Button  type="submit" >
             Submit
           </Button>
         </Group>
 
-        <p className="para">
-          Don't have an account?
-          <a href="/" className="reg">
-            Register here
-          </a>
-        </p>
       </form>
     </Box>
   );
