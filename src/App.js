@@ -3,33 +3,48 @@ import "./Components/Footer/Footer.css";
 import "./Components/Login/Login.css";
 import "./Components/Signup/Signup.css";
 import "./Components/Profile/Profile.css";
+import "./Components/Otp/Otp.css";
 import Footer from "./Components/Footer/Footer.js";
-import Login from "./Components/Login/Login.js";
 import Signup from "./Components/Signup/Signup.js";
 import Profile from "./Components/Profile/Profile.js";
+import Login from "./Components/Login/Login.js";
 import Navbar from "./Components/Navbar/Navbar.js";
+import Steppers from "./Components/Stepper/Stepper.js";
+import OTP from "./Components/Otp/Otp.jsx";
+import {OtpContext} from "./Components/Signup/context.js";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-import OTP from "./Components/Otp/Otp.jsx";
+import React, { useState } from 'react';
 
 function App() {
+
+  const [userId, setUserId] = useState({
+    userId: ''
+  });
+  
   return (
     <>
+    <OtpContext.Provider value={{userId, setUserId}}>
       <Router>
         <Navbar />
-
-        <Routes>
+        {/* <Routes>
           
           <Route path="/" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route exact path="/otpvr" element={<OTP />} />
           <Route exact path="/profile" element={<Profile />} />
-        </Routes>
+          
+          
+        </Routes> */}
+
+        <Steppers/>
+
         <Footer />
       </Router>
+      </OtpContext.Provider>
 
       
 
