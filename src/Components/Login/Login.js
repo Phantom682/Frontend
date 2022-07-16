@@ -6,12 +6,14 @@ import {
   PasswordInput,
   TextInput,
   Box,
+  Group,
+  Button,
 } from "@mantine/core";
 import { At, Lock } from "tabler-icons-react";
 import { useNavigate } from "react-router-dom";
 
 const schema = z.object({
-  username: z
+  email: z
     .string()
     .min(2, { message: "Name should have at least 2 letters" }),
   password: z.string().min(6, {
@@ -33,6 +35,7 @@ function Login() {
 
   async function login(values) {
     console.log(values);
+    document.getElementById("nextbtn").click();
 
     const result = await fetch("http://localhost:5000/user/login_user", {
       method: "POST",
@@ -44,7 +47,7 @@ function Login() {
     });
     const data = await result.json();
     console.log(data);
-    // Navigate("/", { replace: true });
+    Navigate("/login", { replace: true });
   }
 
   return (
@@ -77,9 +80,9 @@ function Login() {
           </Text>
         </div>
 
-        {/* <Group position="center" mt="xl">
-            <Button type="submit">Submit</Button>
-          </Group> */}
+        <Group position="center" mt="xl">
+          <Button fullWidth type="submit">Submit</Button>
+        </Group>
       </form>
     </Box>
   );

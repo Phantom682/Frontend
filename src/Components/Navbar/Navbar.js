@@ -1,5 +1,6 @@
 function Navbar() {
   return (
+    
     <nav className="navbar navbar-expand-custom navbar-mainbg">
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Emblem_of_India_%28Government_Gazette%29.svg/1200px-Emblem_of_India_%28Government_Gazette%29.svg.png" alt="" />
       <a className="navbar-brand navbar-logo" href="/">
