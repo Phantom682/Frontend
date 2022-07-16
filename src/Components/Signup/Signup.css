@@ -1,18 +1,5 @@
-
-.btn {
-    background-color: #769FCD;
-    color: white;
-    display:inline-block;
-    padding: 0 60px 0;
-    margin-top: 5px;
-    margin-right: 57px;
+.input {
+  display: inline-block;
+  text-align: left;
 }
 
-
-.flex {
-    margin-top: 20px;
-}  
-
-.para {
-    margin-top: 20px;
-}

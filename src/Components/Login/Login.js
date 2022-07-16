@@ -1,7 +1,13 @@
 import { z } from "zod";
 import { useForm, zodResolver } from "@mantine/form";
-import { PasswordInput, TextInput, Button, Box, Group } from "@mantine/core";
-import "./Login.css";
+import {
+  Checkbox,
+  Text,
+  PasswordInput,
+  TextInput,
+  Box,
+} from "@mantine/core";
+import { At, Lock } from "tabler-icons-react";
 import { useNavigate } from "react-router-dom";
 
 const schema = z.object({
@@ -14,23 +20,20 @@ const schema = z.object({
   }),
 });
 
-
-
 function Login() {
   let Navigate = useNavigate();
 
   const form = useForm({
     schema: zodResolver(schema),
     initialValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
 
   async function login(values) {
-
     console.log(values);
-  
+
     const result = await fetch("http://localhost:5000/user/login_user", {
       method: "POST",
       body: JSON.stringify(values),
@@ -47,37 +50,36 @@ function Login() {
   return (
     <Box sx={{ maxWidth: 340 }} mx="auto">
       <form onSubmit={form.onSubmit((values) => login(values))}>
-        <TextInput
-          className="user"
-          required
-          label="Username"
-          placeholder="Username"
-          mt="sm"
-          {...form.getInputProps("username")}
-        />
+        <div className="row">
+          <TextInput
+            required
+            icon={<At size={19} />}
+            label="Email"
+            className="input"
+            placeholder="your@email.com"
+            {...form.getInputProps("email")}
+          />
 
-        <PasswordInput
-          placeholder="Password"
-          label="Password"
-          description="Password must include at least one letter, number and special character"
-          required
-          {...form.getInputProps("password")}
-        />
-
-        <div className="flex ">
-          <input id="remember" type="checkbox" />
-          <label for="remember">Remember</label>
-          <a className="forgot " href="/">
+          <PasswordInput
+            placeholder="Password"
+            icon={<Lock size={19} />}
+            label="Password"
+            className="input"
+            required
+            {...form.getInputProps("password")}
+          />
+        </div>
+        <br />
+        <div className="row">
+          <Checkbox className="col" label="Remember" radius="xs" size="xs" />
+          <Text className="col" size="xs" align="right" variant="link">
             Forgot your password?
-          </a>
+          </Text>
         </div>
 
-        <Group position="center" mt="xl">
-          <Button  type="submit" >
-            Submit
-          </Button>
-        </Group>
-
+        {/* <Group position="center" mt="xl">
+            <Button type="submit">Submit</Button>
+          </Group> */}
       </form>
     </Box>
   );
