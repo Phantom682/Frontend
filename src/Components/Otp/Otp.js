@@ -1,7 +1,6 @@
-import { TextInput, Button, Group, Box } from "@mantine/core";
+import { TextInput, Box } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import "./Otp.css";
 import { z } from "zod";
 import { useForm, zodResolver } from "@mantine/form";
 import { useContext } from "react";
@@ -40,11 +39,14 @@ function OTP() {
   });
 
   return (
+
     <Box sx={{ maxWidth: 300 }} mx="auto">
       <form onSubmit={form.onSubmit((values) => otp(values))}>
         <TextInput
           required
           label="Enter your OTP"
+          className="input col-xl-11"
+          placeholder="Enter Otp"
           onKeyPress={(event) => {
             if (!/[0-9]/.test(event.key)) {
               event.preventDefault();
@@ -54,11 +56,12 @@ function OTP() {
           {...form.getInputProps("otp")}
         />
 
-        <Group position="center" mt="md">
-          <Button type="submit">Submit</Button>
-        </Group>
+        {/* <Group position="center" mt="md">
+          <Button className="btn1" type="submit">Submit</Button>
+        </Group> */}
       </form>
     </Box>
+
   );
 }
 

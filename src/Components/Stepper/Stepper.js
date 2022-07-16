@@ -1,10 +1,9 @@
-import { useState} from "react";
-import { Stepper, Button, Group } from "@mantine/core";
+import { useState } from "react";
+import { Stepper, Button, Card, Group } from "@mantine/core";
 import Signup from "../Signup/Signup.js";
 import "../Signup/Signup.css";
 import Login from "../Login/Login.js";
-import "../Login/Login.css";
-import OTP from "../Otp/Otp.jsx";
+import OTP from "../Otp/Otp.js";
 import "./Stepper.css";
 import {
   UserCheck,
@@ -14,9 +13,7 @@ import {
 } from "tabler-icons-react";
 
 function Steppers() {
-
-
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
   const nextStep = (n) =>
     setActive((current) => (current < 3 ? current + 1 : current));
   const prevStep = () =>
@@ -43,9 +40,23 @@ function Steppers() {
             description="Create an account"
             allowStepSelect={active > 0}
           >
-            <Signup />
-            <br />
-            Step 1 content: Create an account
+            <div style={{ width: 450, margin: "auto" }}>
+              <Card shadow="xl">
+                Step 1 content: Create an account
+                <br />
+                <br />
+                <Signup />
+                <br />
+                <Button
+                  position="right"
+                  fullWidth
+                  onClick={nextStep}
+                  type="submit"
+                >
+                  Sign Up
+                </Button>
+              </Card>
+            </div>
           </Stepper.Step>
           <Stepper.Step
             label="Second step"
@@ -53,9 +64,24 @@ function Steppers() {
             description="Verify email"
             allowStepSelect={active > 1}
           >
-            <OTP />
-            <br />
-            Step 2 content: Verify email
+            <div style={{ width: 320, margin: "auto" }}>
+              <Card shadow="xl">
+                Step 2 content: Verify email
+                <br />
+                <br />
+                <OTP />
+                <br />
+                <Button
+                  position="right"
+                  area
+                  fullWidth
+                  onClick={nextStep}
+                  type="submit"
+                >
+                  Submit
+                </Button>
+              </Card>
+            </div>
           </Stepper.Step>
           <Stepper.Step
             label="Final step"
@@ -63,11 +89,19 @@ function Steppers() {
             description="Login"
             allowStepSelect={active > 2}
           >
-            <Login />
-            <br />
-            Step 3 content: Login
+            <div style={{ width: 400, margin: "auto" }}>
+              <Card shadow="xl">
+                Step 3 content: Login
+                <br />
+                <Login />
+                <br />
+                <Button onClick={nextStep} fullWidth type="submit">
+                  Login
+                </Button>
+              </Card>
+            </div>
           </Stepper.Step>
-          <Stepper.Completed  >
+          <Stepper.Completed>
             Completed, click back button to get to previous step
           </Stepper.Completed>
         </Stepper>
@@ -76,8 +110,8 @@ function Steppers() {
           <Button variant="default" onClick={prevStep}>
             Back
           </Button>
-          <Button onClick={nextStep}>Next step</Button>
         </Group>
+        {/* <Button onClick={nextStep}>Submit</Button> */}
       </div>
     </>
   );
