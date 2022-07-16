@@ -1,4 +1,4 @@
-import { TextInput, Box } from "@mantine/core";
+import { TextInput, Box, Button, Group } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { z } from "zod";
@@ -17,6 +17,7 @@ function OTP() {
   let Navigate = useNavigate();
   async function otp(values) {
     console.log(values);
+    document.getElementById("nextbtn").click();
     const result = await fetch("http://localhost:5000/user/verifyOTP", {
       method: "POST",
       body: JSON.stringify(values),
@@ -39,7 +40,6 @@ function OTP() {
   });
 
   return (
-
     <Box sx={{ maxWidth: 300 }} mx="auto">
       <form onSubmit={form.onSubmit((values) => otp(values))}>
         <TextInput
@@ -56,12 +56,13 @@ function OTP() {
           {...form.getInputProps("otp")}
         />
 
-        {/* <Group position="center" mt="md">
-          <Button className="btn1" type="submit">Submit</Button>
-        </Group> */}
+        <Group position="center" mt="xl">
+          <Button fullWidth type="submit">
+            Submit
+          </Button>
+        </Group>
       </form>
     </Box>
-
   );
 }
 

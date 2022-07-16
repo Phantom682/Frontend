@@ -3,12 +3,15 @@ import "./Components/Footer/Footer.css";
 import "./Components/Signup/Signup.css";
 import "./Components/Profile/Profile.css";
 import Footer from "./Components/Footer/Footer.js";
+import Newpass from "./Components/Forget/Newpass.js"
 import Signup from "./Components/Signup/Signup.js";
 import Profile from "./Components/Profile/Profile.js";
 import Login from "./Components/Login/Login.js";
 import Navbar from "./Components/Navbar/Navbar.js";
 import Steppers from "./Components/Stepper/Stepper.js";
 import OTP from "./Components/Otp/Otp.js";
+import VOTP from "./Components/Forget/VOtp.js";
+import Vemail from "./Components/Forget/vemail.js";
 import {OtpContext} from "./Components/Signup/context.js";
 import {
   BrowserRouter as Router,
@@ -34,15 +37,18 @@ function App() {
         <Navbar/>
         <Routes>
           
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={<Steppers />} /> 
+          <Route path="/vemail" element={<Vemail />} />             
           <Route path="/login" element={<Login />}/>
           <Route exact path="/otpvr" element={<OTP />} />
+          <Route exact path="/votp" element={<VOTP />} />
+          <Route exact path="/newpass" element={<Newpass />} />
           <Route exact path="/profile" element={<Profile />} />
           
           
         </Routes>
 
-        <Steppers/>
+        
 
         <Footer />
       </Router>
