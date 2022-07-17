@@ -11,7 +11,7 @@ import {
 } from "@mantine/core";
 import { At, Lock } from "tabler-icons-react";
 import { useNavigate } from "react-router-dom";
-
+import React from "react";
 const schema = z.object({
   email: z
     .string()

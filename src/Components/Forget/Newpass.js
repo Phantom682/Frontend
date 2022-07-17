@@ -1,7 +1,7 @@
 import { useForm } from '@mantine/form';
 import { PasswordInput, Group, Button, Box } from '@mantine/core';
 import { useNavigate } from "react-router-dom";
-
+import React from 'react';
 function Newpass() {
   let Navigate = useNavigate();
   const form = useForm({
