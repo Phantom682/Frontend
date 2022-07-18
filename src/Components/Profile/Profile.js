@@ -3,7 +3,7 @@ import { useForm, zodResolver } from '@mantine/form';
 import { NumberInput, TextInput, Box } from '@mantine/core';
 import { PasswordInput } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
-
+import React from 'react';
 
 const schema = z.object({
   name: z.string().max(20, { message: 'Name should have atmost 20 letters' }),

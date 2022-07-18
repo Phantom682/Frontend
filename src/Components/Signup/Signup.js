@@ -1,4 +1,5 @@
 import { z } from "zod";
+import React from "react";
 import { useForm, zodResolver } from "@mantine/form";
 import {
   TextInput,
@@ -27,7 +28,7 @@ const schema = z.object({
     .min(6, { message: "Password length should be min 6 characters" }),
 });
 
-function Signup() {
+function Signup({nextStep}) {
   let Navigate = useNavigate();
   const { userId, setUserId } = useContext(OtpContext);
 
@@ -45,8 +46,6 @@ function Signup() {
 
   async function signUp(values) {
     console.log(values);
-    
-
     const result = await fetch("http://localhost:5000/user/create_user", {
       method: "POST",
       body: JSON.stringify(values),
@@ -60,8 +59,7 @@ function Signup() {
     setUserId({
       userId: data.data.userId,
     });
-    // document.getElementById("nextbtn").click();
-    // Navigate("/otpvr", { replace: true });
+    nextStep(1);
   }
 
   return (

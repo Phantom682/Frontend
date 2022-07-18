@@ -4,6 +4,8 @@ import React from "react";
 import { z } from "zod";
 import { useForm, zodResolver } from "@mantine/form";
 import { At } from "tabler-icons-react";
+import { OtpContext } from "../Signup/context.js";
+import { useContext, useState } from "react";
 
 const schema = z.object({
   email: z.string(),
@@ -12,6 +14,8 @@ const schema = z.object({
 function Vemail() {
 
   let Navigate = useNavigate();
+  const { userId, setUserId } = useContext(OtpContext);
+
   async function vemail(values) {
     console.log(values);
     
@@ -25,7 +29,10 @@ function Vemail() {
     });
     const data = await result.json();
     console.log(data);
-    Navigate("/otpvr", { replace: true });
+    setUserId({
+      userId: data.data.userId,
+    });
+    Navigate("/votp", { replace: true });
   }
  
   const form = useForm({
@@ -38,7 +45,7 @@ function Vemail() {
   return (
     <Card style={{ width: 400, margin: "auto" }} shadow="xl">
     <Box >
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit((values) => vemail(values))}>
         <TextInput
           required
           icon={<At size={19} />}

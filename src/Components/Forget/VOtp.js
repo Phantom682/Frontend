@@ -15,7 +15,7 @@ function VOTP() {
   const { userId, setUserId } = useContext(OtpContext);
 
   let Navigate = useNavigate();
-  async function otp(values) {
+  async function votp(values) {
     console.log(values);
 
     const result = await fetch("http://localhost:5000/user/verifyOTP", {
@@ -44,7 +44,7 @@ function VOTP() {
       <Card shadow="xl">
         Verify Otp
         <Box sx={{ maxWidth: 300 }} mx="auto">
-          <form onSubmit={form.onSubmit((values) => otp(values))}>
+          <form onSubmit={form.onSubmit((values) => votp(values))}>
             <TextInput
               required
               label="Enter your OTP"
@@ -55,7 +55,7 @@ function VOTP() {
                   event.preventDefault();
                 }
               }}
-              value={otp}
+              
               {...form.getInputProps("otp")}
             />
 

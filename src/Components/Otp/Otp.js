@@ -17,7 +17,6 @@ function OTP() {
   let Navigate = useNavigate();
   async function otp(values) {
     console.log(values);
-    document.getElementById("nextbtn").click();
     const result = await fetch("http://localhost:5000/user/verifyOTP", {
       method: "POST",
       body: JSON.stringify(values),
