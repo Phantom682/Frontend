@@ -6,8 +6,10 @@ import {
   TextInput,
   Card,
   Group,
-  Button,
+  Divider,
+  SimpleGrid,
 } from "@mantine/core";
+import Submit from "../Button/Button.js";
 import { At, Lock } from "tabler-icons-react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
@@ -34,14 +36,17 @@ function Login() {
     // console.log(values);
     document.getElementById("nextbtn").click();
 
-    const result = await fetch(process.env.REACT_APP_API_URL +"/user/login_user", {
-      method: "POST",
-      body: JSON.stringify(values),
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
+    const result = await fetch(
+      process.env.REACT_APP_API_URL + "/user/login_user",
+      {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
     const data = await result.json();
     // console.log(data);
     Navigate("/login", { replace: true });
@@ -49,57 +54,44 @@ function Login() {
 
   return (
     <>
-      <div>
-        <Card
-          style={{ width: 400, margin: "auto", marginTop: 100 }}
-          shadow="xl"
-        >
-          <Text size="lg" weight={500}>
+      <div style={{ width: 400, margin: "auto", marginTop: 100 }}>
+        <Card shadow="xl">
+          <Text size="xl" weight={600}>
             User Login
           </Text>
           <form onSubmit={form.onSubmit((values) => login(values))}>
             <div style={{ marginTop: 10 }}>
-              <div className="row">
-  
-                <TextInput   
-                  size="md"
-                  required
-                  icon={<At size={19} />}
-                  label="Email"
-                  className="col"
-                  placeholder="your@email.com"
-                  {...form.getInputProps("email")}
-                />
-           
+              <TextInput
+                required
+                icon={<At size={19} />}
+                label="Email"
+                placeholder="your@email.com"
+                {...form.getInputProps("email")}
+              />
 
-
-                <PasswordInput
-                  placeholder="Password"
-                  icon={<Lock size={19} />}
-                  style={{ marginTop: 10 }}
-                  label="Password"
-                  className="col"
-                  required
-                  {...form.getInputProps("password")}
-                />
-                </div>
-
+              <PasswordInput
+                placeholder="Password"
+                icon={<Lock size={19} />}
+                style={{ marginTop: 10 }}
+                label="Password"
+                required
+                {...form.getInputProps("password")}
+              />
             </div>
 
-            <Group position="center" mt="xl">
-              <Button fullWidth type="submit">
-                Login
-              </Button>
+            <Group mt="xl" position="center">
+              <Submit name="Login" />
             </Group>
             <br />
-            <div className="row">
-              <Text className="col" size="md" align="left" variant="link">
+            <SimpleGrid spacing="xs" cols={3}>
+              <Text size="sm" variant="link">
                 Forgot your password?
               </Text>
-              <Text className="col" size="md" align="right" variant="link">
+              <Divider sx={{ height: "50px" }} orientation="vertical" />
+              <Text size="sm" variant="link">
                 Sign in
               </Text>
-            </div>
+            </SimpleGrid>
           </form>
         </Card>
       </div>

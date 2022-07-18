@@ -1,14 +1,8 @@
 import { z } from "zod";
 import React from "react";
 import { useForm, zodResolver } from "@mantine/form";
-import {
-  TextInput,
-  PasswordInput,
-  Box,
-  Select,
-  Group,
-  Button,
-} from "@mantine/core";
+import { TextInput, PasswordInput, Box, Select, Group } from "@mantine/core";
+import Submit from "../Button/Button.js";
 import { useNavigate } from "react-router-dom";
 import { OtpContext } from "./context.js";
 import { useContext, useState } from "react";
@@ -28,7 +22,7 @@ const schema = z.object({
     .min(6, { message: "Password length should be min 6 characters" }),
 });
 
-function Signup({nextStep}) {
+function Signup({ nextStep }) {
   let Navigate = useNavigate();
   const { userId, setUserId } = useContext(OtpContext);
 
@@ -45,17 +39,20 @@ function Signup({nextStep}) {
   });
 
   async function signUp(values) {
-    console.log(values);
-    const result = await fetch("http://localhost:5000/user/create_user", {
-      method: "POST",
-      body: JSON.stringify(values),
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
+    // console.log(values);
+    const result = await fetch(
+      process.env.REACT_APP_API_URL + "/user/create_user",
+      {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
     const data = await result.json();
-    console.log(data);
+    // console.log(data);
     setUserId({
       userId: data.data.userId,
     });
@@ -127,9 +124,8 @@ function Signup({nextStep}) {
             {...form.getInputProps("password")}
           />
         </div>
-
-        <Group position="center" mt="xl">
-          <Button fullWidth type="submit">Sign Up</Button>
+        <Group mt="xl"  position="center">
+          <Submit name="Submit"/>
         </Group>
       </form>
     </Box>
