@@ -10,7 +10,7 @@ import Navbar from "./Components/Navbar/Navbar.js";
 import Steppers from "./Components/Stepper/Stepper.js";
 import OTP from "./Components/Otp/Otp.js";
 import VOTP from "./Components/Forget/VOtp.js";
-import Vemail from "./Components/Forget/vEmail.js";
+import Vemail from "./Components/Forget/vemail.js";
 import {OtpContext} from "./Components/Signup/context.js";
 import {
   BrowserRouter as Router,
