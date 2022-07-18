@@ -20,7 +20,7 @@ function Profile() {
   async function signUp(values) {
    
     console.log(values);
-    const result = await fetch('http://localhost:5000/user/create_user', {
+    const result = await fetch(process.env.REACT_APP_API_URL + '/user/create_user', {
       
       method: "POST",
       body: JSON.stringify(values),

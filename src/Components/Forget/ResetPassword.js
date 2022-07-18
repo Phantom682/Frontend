@@ -2,7 +2,8 @@ import { useForm } from '@mantine/form';
 import { PasswordInput, Group, Button, Box } from '@mantine/core';
 import { useNavigate } from "react-router-dom";
 import React from 'react';
-function Newpass() {
+
+function ResetPassword() {
   let Navigate = useNavigate();
   const form = useForm({
     initialValues: {
@@ -16,10 +17,10 @@ function Newpass() {
     },
   });
 
-  async function newpass(values) {
-    console.log(values);
-
-    const result = await fetch("http://localhost:5000/user/resetPassword", {
+ 
+  async function resetPassword(values) {
+    // console.log(values);
+    const result = await fetch(process.env.REACT_APP_API_URL + "/user/resetPassword", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
@@ -27,14 +28,15 @@ function Newpass() {
         Accept: "application/json",
       },
     });
+  
     const data = await result.json();
-    console.log(data);
+    // console.log(data);
     Navigate("/login", { replace: true });
   }
 
   return (
     <Box sx={{ maxWidth: 340 }} mx="auto">
-      <form onSubmit={form.onSubmit((values) => newpass(values))}>
+      <form onSubmit={form.onSubmit((values) => resetPassword(values))}>
         <PasswordInput
           label="Password"
           placeholder="Password"
@@ -56,4 +58,4 @@ function Newpass() {
   );
 }
 
-export default Newpass;
+export default ResetPassword;

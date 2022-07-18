@@ -44,9 +44,10 @@ function Signup({nextStep}) {
     },
   });
 
+
   async function signUp(values) {
-    console.log(values);
-    const result = await fetch("http://localhost:5000/user/create_user", {
+    // console.log(values);
+    const result = await fetch(process.env.REACT_APP_API_URL + "/user/create_user", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
@@ -55,7 +56,7 @@ function Signup({nextStep}) {
       },
     });
     const data = await result.json();
-    console.log(data);
+    // console.log(data);
     setUserId({
       userId: data.data.userId,
     });

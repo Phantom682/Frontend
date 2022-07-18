@@ -3,14 +3,14 @@ import "./Components/Footer/Footer.css";
 import "./Components/Profile/Profile.css";
 import "./Components/Login/Login.css";
 import Footer from "./Components/Footer/Footer.js";
-import Newpass from "./Components/Forget/ChangePassword.js"
+import ResetPassword from "./Components/Forget/ResetPassword.js"
 import Profile from "./Components/Profile/Profile.js";
 import Login from "./Components/Login/Login.js";
 import Navbar from "./Components/Navbar/Navbar.js";
 import Steppers from "./Components/Stepper/Stepper.js";
-import OTP from "./Components/Otp/Otp.js";
-import VOTP from "./Components/Forget/VOtp.js";
-import Vemail from "./Components/Forget/vemail.js";
+import Otp from "./Components/Otp/Otp.js";
+import VerifyOtp from "./Components/Forget/VerifyOtp.js";
+import VerifyEmail from "./Components/Forget/VerifyEmail.js";
 import {OtpContext} from "./Components/Signup/context.js";
 import {
   BrowserRouter as Router,
@@ -37,11 +37,11 @@ function App() {
         <Routes>
           
           <Route path="/" element={<Steppers />} /> 
-          <Route path="/vemail" element={<Vemail />} />             
+          <Route path="/vemail" element={<VerifyEmail />} />             
           <Route path="/login" element={<Login />}/>
-          <Route exact path="/otpvr" element={<OTP />} />
-          <Route exact path="/votp" element={<VOTP />} />
-          <Route exact path="/newpass" element={<Newpass />} />
+          <Route exact path="/otpvr" element={<Otp/>} />
+          <Route exact path="/votp" element={<VerifyOtp />} />
+          <Route exact path="/newpass" element={<ResetPassword />} />
           <Route exact path="/profile" element={<Profile />} />
           
           

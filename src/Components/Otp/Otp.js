@@ -11,13 +11,16 @@ const schema = z.object({
   otp: z.string(),
 });
 
-function OTP() {
+function Otp() {
   const { userId, setUserId } = useContext(OtpContext);
-
   let Navigate = useNavigate();
+
+
+
   async function otp(values) {
-    console.log(values);
-    const result = await fetch("http://localhost:5000/user/verifyOTP", {
+    // console.log(values);
+    const data = await result.json();
+    const result = await fetch(process.env.REACT_APP_API_URL + "/user/verifyOTP", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
@@ -25,8 +28,7 @@ function OTP() {
         Accept: "application/json",
       },
     });
-    const data = await result.json();
-    console.log(data);
+    // console.log(data);
     Navigate("/login", { replace: true });
   }
 
@@ -46,11 +48,7 @@ function OTP() {
           label="Enter your OTP"
           className="input col-xl-11"
           placeholder="Enter Otp"
-          onKeyPress={(event) => {
-            if (!/[0-9]/.test(event.key)) {
-              event.preventDefault();
-            }
-          }}
+          type="number"
           value={otp}
           {...form.getInputProps("otp")}
         />
@@ -65,4 +63,4 @@ function OTP() {
   );
 }
 
-export default OTP;
+export default Otp;

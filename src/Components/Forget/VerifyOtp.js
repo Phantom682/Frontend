@@ -11,14 +11,15 @@ const schema = z.object({
   otp: z.string(),
 });
 
-function VOTP() {
+function VerifyOtp() {
   const { userId, setUserId } = useContext(OtpContext);
 
-  let Navigate = useNavigate();
-  async function votp(values) {
-    console.log(values);
+ 
 
-    const result = await fetch("http://localhost:5000/user/verifyOTP", {
+  let Navigate = useNavigate();
+  async function verifyOtp(values) {
+    // console.log(values);
+    const result = await fetch(process.env.REACT_APP_API_URL + "/user/verifyOTP", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
@@ -27,7 +28,7 @@ function VOTP() {
       },
     });
     const data = await result.json();
-    console.log(data);
+    // console.log(data);
     Navigate("/newpass", { replace: true });
   }
 
@@ -44,18 +45,13 @@ function VOTP() {
       <Card shadow="xl">
         Verify Otp
         <Box sx={{ maxWidth: 300 }} mx="auto">
-          <form onSubmit={form.onSubmit((values) => votp(values))}>
+          <form onSubmit={form.onSubmit((values) => verifyOtp(values))}>
             <TextInput
               required
               label="Enter your OTP"
               className="input col-xl-11"
               placeholder="Enter Otp"
-              onKeyPress={(event) => {
-                if (!/[0-9]/.test(event.key)) {
-                  event.preventDefault();
-                }
-              }}
-              
+              type="number"    
               {...form.getInputProps("otp")}
             />
 
@@ -71,4 +67,4 @@ function VOTP() {
   );
 }
 
-export default VOTP;
+export default VerifyOtp;

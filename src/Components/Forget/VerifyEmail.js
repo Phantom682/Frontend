@@ -11,15 +11,14 @@ const schema = z.object({
   email: z.string(),
 });
 
-function Vemail() {
+function VerifyEmail() {
 
   let Navigate = useNavigate();
   const { userId, setUserId } = useContext(OtpContext);
 
-  async function vemail(values) {
-    console.log(values);
-    
-    const result = await fetch("http://localhost:5000/user/verifyOTP", {
+  async function verifyEmail(values) {
+    // console.log(values);
+    const result = await fetch(process.env.REACT_APP_API_URL + "/user/verifyOTP", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
@@ -28,7 +27,7 @@ function Vemail() {
       },
     });
     const data = await result.json();
-    console.log(data);
+    // console.log(data);
     setUserId({
       userId: data.data.userId,
     });
@@ -43,9 +42,10 @@ function Vemail() {
   });
 
   return (
-    <Card style={{ width: 400, margin: "auto" }} shadow="xl">
+    <div style={{ width: 400, margin: "auto" }}>
+    <Card  shadow="xl">
     <Box >
-      <form onSubmit={form.onSubmit((values) => vemail(values))}>
+      <form onSubmit={form.onSubmit((values) => verifyEmail(values))}>
         <TextInput
           required
           icon={<At size={19} />}
@@ -61,7 +61,8 @@ function Vemail() {
       </form>
     </Box>
     </Card>
+    </div>
   );
 }
 
-export default Vemail;
+export default VerifyEmail;
