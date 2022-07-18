@@ -31,10 +31,10 @@ function Login() {
   });
 
   async function login(values) {
-    console.log(values);
+    // console.log(values);
     document.getElementById("nextbtn").click();
 
-    const result = await fetch("http://localhost:5000/user/login_user", {
+    const result = await fetch(process.env.REACT_APP_API_URL +"/user/login_user", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
@@ -43,7 +43,7 @@ function Login() {
       },
     });
     const data = await result.json();
-    console.log(data);
+    // console.log(data);
     Navigate("/login", { replace: true });
   }
 
