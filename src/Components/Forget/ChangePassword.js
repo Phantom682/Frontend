@@ -16,10 +16,10 @@ function Newpass() {
     },
   });
 
-  async function Newpass(values) {
+  async function newpass(values) {
     console.log(values);
 
-    const result = await fetch("http://localhost:5000/user/create_user", {
+    const result = await fetch("http://localhost:5000/user/resetPassword", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
@@ -34,7 +34,7 @@ function Newpass() {
 
   return (
     <Box sx={{ maxWidth: 340 }} mx="auto">
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit((values) => newpass(values))}>
         <PasswordInput
           label="Password"
           placeholder="Password"

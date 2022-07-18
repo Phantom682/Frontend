@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Stepper, Button, Card, Group } from "@mantine/core";
+import { Stepper,  Card} from "@mantine/core";
 import Signup from "../Signup/Signup.js";
 import "../Signup/Signup.css";
 import OTP from "../Otp/Otp.js";
@@ -17,9 +17,7 @@ function Steppers() {
   const [active, setActive] = useState(0);
   const nextStep = (n) =>
     setActive((current) => (current < 2 ? current + 1 : current));
-  const prevStep = () =>
-    setActive((current) => (current > 0 ? current - 1 : current));
-
+ 
   return (
     <>
       <div className="step">
@@ -67,17 +65,9 @@ function Steppers() {
               </Card>
             </div>
           </Stepper.Step>
-          <Stepper.Completed allowStepSelect={active > 2}>
-            Completed
-          </Stepper.Completed>
+
         </Stepper>
 
-        {/* <Group position="center" mt="xl">
-          <Button variant="default" onClick={prevStep}>
-            Back
-          </Button>
-          <Button onClick={nextStep} id="nextbtn" className="next-btn">Next step</Button>
-        </Group> */}
 
       </div>
     </>

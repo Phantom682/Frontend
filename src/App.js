@@ -1,17 +1,16 @@
 import "./Components/Navbar/Navbar.css";
 import "./Components/Footer/Footer.css";
-import "./Components/Signup/Signup.css";
 import "./Components/Profile/Profile.css";
+import "./Components/Login/Login.css";
 import Footer from "./Components/Footer/Footer.js";
-import Newpass from "./Components/Forget/Newpass.js"
-import Signup from "./Components/Signup/Signup.js";
+import Newpass from "./Components/Forget/ChangePassword.js"
 import Profile from "./Components/Profile/Profile.js";
 import Login from "./Components/Login/Login.js";
 import Navbar from "./Components/Navbar/Navbar.js";
 import Steppers from "./Components/Stepper/Stepper.js";
 import OTP from "./Components/Otp/Otp.js";
 import VOTP from "./Components/Forget/VOtp.js";
-import Vemail from "./Components/Forget/vemail.js";
+import Vemail from "./Components/Forget/vEmail.js";
 import {OtpContext} from "./Components/Signup/context.js";
 import {
   BrowserRouter as Router,
