@@ -1,15 +1,14 @@
 import { Tabs } from '@mantine/core';
-import { Photo, MessageCircle, Settings } from 'tabler-icons-react';
+import { Photo, MessageCircle, } from 'tabler-icons-react';
+import Address from './Address.js';
+import Basic from './Basic.js';
 
 function profile() {
   return (
-    <Tabs>
-      <Tabs.Tab label="Gallery" icon={<Photo size={14} />}>Gallery tab content</Tabs.Tab>
-      <Tabs.Tab label="Messages" icon={<MessageCircle size={14} />}>Messages tab content</Tabs.Tab>
-      <Tabs.Tab label="Settings" icon={<Settings size={14} />}>Settings tab content</Tabs.Tab>
-      <Tabs.Tab label="Gallery" icon={<Photo size={14} />}>Gallery tab content</Tabs.Tab>
-      <Tabs.Tab label="Messages" icon={<MessageCircle size={14} />}>Messages tab content</Tabs.Tab>
-     
+    <Tabs  position="center">
+      <Tabs.Tab label="Basic Details"  icon={<Photo size={14} />}><Basic/></Tabs.Tab>
+      <Tabs.Tab label="Address Details"  icon={<MessageCircle size={14} />}><Address/></Tabs.Tab>
+
     </Tabs>
   );
 }

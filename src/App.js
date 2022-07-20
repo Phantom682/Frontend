@@ -2,6 +2,7 @@ import "./Components/Navbar/Navbar.css";
 import "./Components/Footer/Footer.css";
 import "./Components/Profile/Profile.css";
 import "./Components/Login/Login.css";
+import "./Components/Navbar/Navbar2.css";
 import Footer from "./Components/Footer/Footer.js";
 import ResetPassword from "./Components/Forget/ResetPassword.js"
 import Profile from "./Components/Profile/Profile.js";
@@ -11,6 +12,7 @@ import Steppers from "./Components/Stepper/Stepper.js";
 import Otp from "./Components/Otp/Otp.js";
 import VerifyOtp from "./Components/Forget/VerifyOtp.js";
 import VerifyEmail from "./Components/Forget/VerifyEmail.js";
+import Navbar2 from "./Components/Navbar/Navbar2.js";
 import {OtpContext} from "./Components/Signup/context.js";
 import {
   BrowserRouter as Router,
@@ -33,8 +35,9 @@ function App() {
   
     <OtpContext.Provider value={{userId, setUserId}}>
       <Router>
-      
+        
         <Navbar/>
+        <Navbar2/>
         <Routes>
           
           <Route path="/" element={<Steppers />} /> 
