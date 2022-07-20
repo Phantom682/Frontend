@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Stepper,  Card} from "@mantine/core";
 import Signup from "../Signup/Signup.js";
 import "../Signup/Signup.css";
-import OTP from "../Otp/Otp.js";
+import Otp from "../Otp/Otp.js";
 import "./Stepper.css";
 import {
   UserCheck,
@@ -61,7 +61,7 @@ function Steppers() {
                 Step 2 content: Verify email
                 <br />
                 <br />
-                <OTP />
+                <Otp />
               </Card>
             </div>
           </Stepper.Step>

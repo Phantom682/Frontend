@@ -6,6 +6,7 @@ import { z } from "zod";
 import { useForm, zodResolver } from "@mantine/form";
 import { useContext } from "react";
 import { OtpContext } from "../Signup/context.js";
+import "./forget.css";
 
 const schema = z.object({
   userId: z.string(),
@@ -43,27 +44,26 @@ function VerifyOtp() {
   });
 
   return (
-    <div style={{ width: 320, margin: "auto" }}>
-      <Card shadow="xl">
-        Verify Otp
-        <Box sx={{ maxWidth: 300 }} mx="auto">
-          <form onSubmit={form.onSubmit((values) => verifyOtp(values))}>
-            <TextInput
-              required
-              label="Enter your OTP"
-              className="input col-xl-11"
-              placeholder="Enter Otp"
-              type="number"
-              {...form.getInputProps("otp")}
-            />
+    <>
+      
+      <Box >
+        <form onSubmit={form.onSubmit((values) => verifyOtp(values))}>
+          <TextInput
+            required
+            label="Enter your OTP"
+            placeholder="Enter Otp"
+            className="input"
+            type="number"
+            size="lg"
+            {...form.getInputProps("otp")}
+          />
 
-            <Group mt="xl" position="center">
-              <Submit name="Submit" />
-            </Group>
-          </form>
-        </Box>
-      </Card>
-    </div>
+          <Group mt="xl" position="center">
+            <Submit name="Submit" />
+          </Group>
+        </form>
+      </Box>
+    </>
   );
 }
 

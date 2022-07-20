@@ -45,8 +45,7 @@ function VerifyEmail() {
   });
 
   return (
-    <div style={{ width: 400, margin: "auto" }}>
-      <Card shadow="xl">
+    
         <Box>
           <form onSubmit={form.onSubmit((values) => verifyEmail(values))}>
             <TextInput
@@ -63,8 +62,7 @@ function VerifyEmail() {
             </Group>
           </form>
         </Box>
-      </Card>
-    </div>
+
   );
 }
 

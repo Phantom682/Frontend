@@ -18,6 +18,7 @@ import {
   Route,
 } from "react-router-dom";
 import React, { useState } from 'react';
+import Stepper2 from "./Components/Stepper/Stepper2";
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/vemail" element={<VerifyEmail />} />             
           <Route path="/login" element={<Login />}/>
           <Route exact path="/otpvr" element={<Otp/>} />
+          <Route exact path="/step" element={<Stepper2/>} />
           <Route exact path="/votp" element={<VerifyOtp />} />
           <Route exact path="/newpass" element={<ResetPassword />} />
           <Route exact path="/profile" element={<Profile />} />

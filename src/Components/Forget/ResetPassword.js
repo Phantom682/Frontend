@@ -1,7 +1,8 @@
 import { useForm } from "@mantine/form";
-import { PasswordInput, Group, Button, Box, Card, Text } from "@mantine/core";
+import { PasswordInput, Group, Button, Box, Card, Text, SimpleGrid } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import "./forget.css";
 import Submit from "../Button/Button.js";
 
 function ResetPassword() {
@@ -38,14 +39,13 @@ function ResetPassword() {
   }
 
   return (
-    <div style={{ width: 340, margin: "auto" }}>
-      <Card shadow="xl">
-        <Text size="lg" weight={500}>
-          User Login
-        </Text>
-        <form onSubmit={form.onSubmit((values) => resetPassword(values))}>
+    <>
+
+      <form onSubmit={form.onSubmit((values) => resetPassword(values))}>
+        <SimpleGrid cols={1}>
           <PasswordInput
             label="Password"
+            className="input"
             placeholder="Password"
             {...form.getInputProps("password")}
           />
@@ -53,16 +53,17 @@ function ResetPassword() {
           <PasswordInput
             mt="sm"
             label="Confirm password"
+            className="input"
             placeholder="Confirm password"
             {...form.getInputProps("confirmPassword")}
           />
+        </SimpleGrid>
 
-          <Group mt="xl" position="center">
-            <Submit name="Reset" />
-          </Group>
-        </form>
-      </Card>
-    </div>
+        <Group mt="xl" position="center">
+          <Submit name="Reset" />
+        </Group>
+      </form>
+    </>
   );
 }
 
