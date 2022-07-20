@@ -33,9 +33,7 @@ function Login() {
   });
 
   async function login(values) {
-    // console.log(values);
-    document.getElementById("nextbtn").click();
-
+    console.log(values);
     const result = await fetch(
       process.env.REACT_APP_API_URL + "/user/login_user",
       {
@@ -48,8 +46,8 @@ function Login() {
       }
     );
     const data = await result.json();
-    // console.log(data);
-    Navigate("/login", { replace: true });
+    console.log(data);
+    Navigate("/profile", { replace: true });
   }
 
   return (

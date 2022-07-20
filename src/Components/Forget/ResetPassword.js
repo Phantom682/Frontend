@@ -3,27 +3,31 @@ import { PasswordInput, Group, Button, Box, Card, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import Submit from "../Button/Button.js";
+import { OtpContext } from "../Signup/context.js";
+import { useContext } from "react";
 
 function ResetPassword() {
+  const { userId, setUserId } = useContext(OtpContext);
   let Navigate = useNavigate();
   const form = useForm({
     initialValues: {
-      password: "",
+      newPass: "",
       confirmPassword: "",
+      userId: userId.userId
     },
 
     validate: {
       confirmPassword: (value, values) =>
-        value !== values.password ? "Passwords did not match" : null,
+        value !== values.newPass ? "Passwords did not match" : null,
     },
   });
 
   async function resetPassword(values) {
-    // console.log(values);
+    console.log(values);
     const result = await fetch(
       process.env.REACT_APP_API_URL + "/user/resetPassword",
       {
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify(values),
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +37,7 @@ function ResetPassword() {
     );
 
     const data = await result.json();
-    // console.log(data);
+    console.log(data);
     Navigate("/login", { replace: true });
   }
 
@@ -47,7 +51,7 @@ function ResetPassword() {
           <PasswordInput
             label="Password"
             placeholder="Password"
-            {...form.getInputProps("password")}
+            {...form.getInputProps("newPass")}
           />
 
           <PasswordInput

@@ -17,8 +17,7 @@ function Otp() {
   let Navigate = useNavigate();
 
   async function otp(values) {
-    // console.log(values);
-    const data = await result.json();
+    console.log(values);
     const result = await fetch(
       process.env.REACT_APP_API_URL + "/user/verifyOTP",
       {
@@ -29,8 +28,9 @@ function Otp() {
           Accept: "application/json",
         },
       }
-    );
-    // console.log(data);
+      );
+      const data = await result.json();
+    console.log(data);
     Navigate("/login", { replace: true });
   }
 

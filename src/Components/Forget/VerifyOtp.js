@@ -1,6 +1,6 @@
 import { TextInput, Box, Button, Group, Card } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 import Submit from "../Button/Button.js";
 import { z } from "zod";
 import { useForm, zodResolver } from "@mantine/form";
@@ -14,10 +14,9 @@ const schema = z.object({
 
 function VerifyOtp() {
   const { userId, setUserId } = useContext(OtpContext);
-
   let Navigate = useNavigate();
   async function verifyOtp(values) {
-    // console.log(values);
+    console.log(values);
     const result = await fetch(
       process.env.REACT_APP_API_URL + "/user/verifyOTP",
       {
@@ -30,7 +29,7 @@ function VerifyOtp() {
       }
     );
     const data = await result.json();
-    // console.log(data);
+    console.log(data);
     Navigate("/newpass", { replace: true });
   }
 

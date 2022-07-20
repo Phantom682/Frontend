@@ -5,7 +5,7 @@ import { z } from "zod";
 import { useForm, zodResolver } from "@mantine/form";
 import { At } from "tabler-icons-react";
 import { OtpContext } from "../Signup/context.js";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Submit from "../Button/Button.js";
 
 const schema = z.object({
@@ -21,7 +21,7 @@ function VerifyEmail() {
     const result = await fetch(
       process.env.REACT_APP_API_URL + "/user/forgotPassword",
       {
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify(values),
         headers: {
           "Content-Type": "application/json",
@@ -30,7 +30,6 @@ function VerifyEmail() {
       }
     );
     const data = await result.json();
-    console.log(data);
     setUserId({
       userId: data.data.userId,
     });
