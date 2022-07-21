@@ -1,5 +1,6 @@
 import { Button } from "@mantine/core";
 import React from 'react';
+import './Button.css';
 
 function Submit(props) {
   const name = props.name;
@@ -7,7 +8,7 @@ function Submit(props) {
   const type = props.type;
 
   return (
-    <Button fullWidth type="submit">
+    <Button className="btn" fullWidth type="submit">
       {name}
     </Button>
   );

@@ -1,4 +1,4 @@
-import { TextInput, Box, Button, Group, Card } from "@mantine/core";
+import { TextInput, Group, Card, Text, SimpleGrid } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import Submit from "../Button/Button.js";
@@ -6,14 +6,13 @@ import { z } from "zod";
 import { useForm, zodResolver } from "@mantine/form";
 import { useContext } from "react";
 import { OtpContext } from "../Signup/context.js";
-import "./forget.css";
-
+import "../Signup/Signup.css"
 const schema = z.object({
   userId: z.string(),
   otp: z.string(),
 });
 
-function VerifyOtp() {
+function VerifyOtp({ nextStep }) {
   const { userId, setUserId } = useContext(OtpContext);
 
   let Navigate = useNavigate();
@@ -32,7 +31,9 @@ function VerifyOtp() {
     );
     const data = await result.json();
     // console.log(data);
+    nextStep(1);
     Navigate("/newpass", { replace: true });
+   
   }
 
   const form = useForm({
@@ -45,24 +46,31 @@ function VerifyOtp() {
 
   return (
     <>
-      
-      <Box >
-        <form onSubmit={form.onSubmit((values) => verifyOtp(values))}>
-          <TextInput
-            required
-            label="Enter your OTP"
-            placeholder="Enter Otp"
-            className="input"
-            type="number"
-            size="lg"
-            {...form.getInputProps("otp")}
-          />
+      <div style={{ width: 340, margin: 'auto', marginTop:"1%" }}>
+        <Card shadow="sm" p="lg">
+        <Text size="xl"  align= "center" weight={600}>
+            Verify Email
+          </Text>
+          <form onSubmit={form.onSubmit((values) => verifyOtp(values))}>
+          <div style={{ marginTop: 10 }}>
+          <SimpleGrid cols={1}>
+            <TextInput
+              required
+              label="Enter your OTP"
+              className="input"
+              placeholder="Enter Otp"
+              type="number"
+              {...form.getInputProps("otp")}
+            />
+             </SimpleGrid>
 
-          <Group mt="xl" position="center">
-            <Submit name="Submit" />
-          </Group>
-        </form>
-      </Box>
+            <Group mt="xl" position="center">
+              <Submit name="Submit" />
+            </Group>
+            </div>
+          </form>
+        </Card>
+      </div>
     </>
   );
 }

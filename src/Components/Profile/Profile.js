@@ -5,8 +5,8 @@ import Basic from './Basic.js';
 
 function profile() {
   return (
-    <Tabs  position="center">
-      <Tabs.Tab label="Basic Details"  icon={<Photo size={14} />}><Basic/></Tabs.Tab>
+    <Tabs grow position="center" tabPadding="xl">
+      <Tabs.Tab  label="Basic Details"  icon={<Photo size={14} />}><Basic/></Tabs.Tab>
       <Tabs.Tab label="Address Details"  icon={<MessageCircle size={14} />}><Address/></Tabs.Tab>
 
     </Tabs>

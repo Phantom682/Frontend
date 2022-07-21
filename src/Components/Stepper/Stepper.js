@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { Stepper,  Card} from "@mantine/core";
 import Signup from "../Signup/Signup.js";
-import "../Signup/Signup.css";
 import Otp from "../Otp/Otp.js";
 import "./Stepper.css";
 import {

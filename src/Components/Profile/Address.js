@@ -1,11 +1,12 @@
 import { z } from "zod";
 import React from "react";
 import { useForm, zodResolver } from "@mantine/form";
-import { TextInput, PasswordInput, Box, Select, Group } from "@mantine/core";
+import { SimpleGrid } from '@mantine/core';
+import { TextInput, PasswordInput, Box, Select, Group, Card } from "@mantine/core";
 import Submit from "../Button/Button.js";
 import { useNavigate } from "react-router-dom";
 import { At } from "tabler-icons-react";
-{/*import { OtpContext } from "./context.js";*/}
+{/*import { OtpContext } from "./context.js";*/ }
 
 
 
@@ -22,9 +23,9 @@ const schema = z.object({
     .min(6, { message: "Password length should be min 6 characters" }),
 });
 
-function Address(){
+function Address() {
   let Navigate = useNavigate();
-  
+
 
   const form = useForm({
     schema: zodResolver(schema),
@@ -34,7 +35,7 @@ function Address(){
       state: "",
       district: "",
       pincode: "",
-     
+
     },
   });
 
@@ -59,101 +60,105 @@ function Address(){
     nextStep(1);
   }*/
 
-  return (
-    <Box sx={{ maxWidth: 400 }} mx="auto">
-      <form
-        className="form"
-        onSubmit={form.onSubmit((values) => console.log(values))}
-      >
-        <div className="row">
-          <TextInput
-            required
-            className="input col-md-6"
-            label="Address"
-            placeholder="Enter your Address"
-            mt="sm"
-            {...form.getInputProps("address")}
-          />
-         
-        </div>
-        <Select
+    return (
+      <Box sx={{ maxWidth: 400 }} mx="auto">
+        <Card shadow="xl">
+        <form
+          className="form"
+          onSubmit={form.onSubmit((values) => console.log(values))}
+        >
+          <SimpleGrid cols={2}>
+            <TextInput
+              required
+              className="input"
+              label="Address"
+              placeholder="Enter your Address"
+              {...form.getInputProps("address")}
+            />
+          <Select
             searchable
             clearable
             required
             label="Country"
             placeholder="Pick one"
-            className="input col-md-6"
+            className="input"
             data={[
               { value: "male", label: "Male" },
               { value: "female", label: "Female" },
               { value: "transgender", label: "Transgender" },
             ]}
             {...form.getInputProps("gender")}
-            />
-
-<Select
+          />
+           </SimpleGrid>
+          
+           <SimpleGrid cols={2}>
+          <Select
             searchable
             clearable
             required
             label="State"
             placeholder="Pick one"
-            className="input col-md-6"
+            className="input"
             data={[
               { value: "male", label: "Male" },
               { value: "female", label: "Female" },
               { value: "transgender", label: "Transgender" },
             ]}
             {...form.getInputProps("gender")}
-            />
+          />
 
-<Select
+          <Select
             searchable
             clearable
             required
             label="District"
             placeholder="Pick one"
-            className="input col-md-6"
+            className="input"
             data={[
               { value: "male", label: "Male" },
               { value: "female", label: "Female" },
               { value: "transgender", label: "Transgender" },
             ]}
             {...form.getInputProps("gender")}
-            />
-
-<Select
+          />
+          </SimpleGrid>
+          <SimpleGrid cols={2}>
+          <Select
             searchable
             clearable
             required
             label="City"
             placeholder="Pick one"
-            className="input col-md-6"
+            className="input"
             data={[
               { value: "male", label: "Male" },
               { value: "female", label: "Female" },
               { value: "transgender", label: "Transgender" },
             ]}
             {...form.getInputProps("gender")}
-            />
-
-        <div className="row">
-          <TextInput
-            required
-            label="Pincode"
-            className="input"
-            type="number"
-
-            {...form.getInputProps("pincode")}
           />
-          
-        </div>
-        <Group mt="xl"  position="center">
-          <Submit name="Submit"/>
-        </Group>
-      </form>
-    </Box>
-  );
-}
+
+  
+            <TextInput
+              required
+              label="Pincode"
+              className="input"
+              type="number"
+
+              {...form.getInputProps("pincode")}
+            />
+            </SimpleGrid>
+           
+
+      
+          <Group mt="xl" position="center">
+            <Submit name="Submit" />
+          </Group>
+        </form>
+        </Card>
+      </Box>
+    );
+  }
 
 }
 export default Address;

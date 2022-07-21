@@ -49,7 +49,6 @@ function App() {
           <Route exact path="/newpass" element={<ResetPassword />} />
           <Route exact path="/profile" element={<Profile />} />
           
-          
         </Routes>
 
         

@@ -1,7 +1,7 @@
 import { z } from "zod";
 import React from "react";
 import { useForm, zodResolver } from "@mantine/form";
-import { TextInput, PasswordInput, Box, Select, Group } from "@mantine/core";
+import { TextInput, PasswordInput, Box, Select, Group, Card } from "@mantine/core";
 import Submit from "../Button/Button.js";
 import { useNavigate } from "react-router-dom";
 import { At } from "tabler-icons-react";
@@ -62,11 +62,13 @@ function Basic(){
 
   return (
     <Box sx={{ maxWidth: 400 }} mx="auto">
+      <Card shadow="xl">
       <form
         className="form"
         onSubmit={form.onSubmit((values) => console.log(values))}
       >
         <div className="row">
+        
           <TextInput
             required
             className="input col-md-6"
@@ -126,6 +128,7 @@ function Basic(){
           <Submit name="Submit"/>
         </Group>
       </form>
+      </Card>
     </Box>
   );
 }

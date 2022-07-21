@@ -2,10 +2,9 @@ import { useForm } from "@mantine/form";
 import { PasswordInput, Group, Button, Box, Card, Text, SimpleGrid } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import "./forget.css";
 import Submit from "../Button/Button.js";
 
-function ResetPassword() {
+function ResetPassword({ nextStep }) {
   let Navigate = useNavigate();
   const form = useForm({
     initialValues: {
@@ -36,33 +35,45 @@ function ResetPassword() {
     const data = await result.json();
     // console.log(data);
     Navigate("/login", { replace: true });
+    nextStep(3);
   }
 
   return (
     <>
 
-      <form onSubmit={form.onSubmit((values) => resetPassword(values))}>
-        <SimpleGrid cols={1}>
-          <PasswordInput
-            label="Password"
-            className="input"
-            placeholder="Password"
-            {...form.getInputProps("password")}
-          />
+      <div style={{ width: 340, margin: 'auto', marginTop: "1%" }}>
+        <Card shadow="sm" p="lg">
+          <Text size="xl" align="center" weight={600}>
+            Reset Password
+          </Text>
+          <form onSubmit={form.onSubmit((values) => resetPassword(values))}>
+            <div style={{ marginTop: 10 }}></div>
+            <SimpleGrid cols={1}>
+              <PasswordInput
+                label="Password"
+                className="input"
+                placeholder="Password"
+                {...form.getInputProps("password")}
+              />
+            </SimpleGrid>
 
-          <PasswordInput
-            mt="sm"
-            label="Confirm password"
-            className="input"
-            placeholder="Confirm password"
-            {...form.getInputProps("confirmPassword")}
-          />
-        </SimpleGrid>
+            <SimpleGrid cols={1}>
+              <PasswordInput
+                mt="sm"
+                label="Confirm password"
+                className="input"
+                placeholder="Confirm password"
+                {...form.getInputProps("confirmPassword")}
+              />
+            </SimpleGrid>
 
-        <Group mt="xl" position="center">
-          <Submit name="Reset" />
-        </Group>
-      </form>
+
+            <Group mt="xl" position="center">
+              <Submit name="Reset" />
+            </Group>
+          </form>
+        </Card>
+      </div>
     </>
   );
 }
