@@ -13,6 +13,7 @@ import Submit from "../Button/Button.js";
 import { At, Lock } from "tabler-icons-react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+
 const schema = z.object({
   email: z.string().min(2, { message: "Name should have at least 2 letters" }),
   password: z.string().min(6, {
@@ -52,9 +53,9 @@ function Login() {
 
   return (
     <>
-      <div style={{ width: 400, margin: "auto", marginTop: 100 }}>
+      <div style={{ width: 350, margin: "auto", marginTop: 100 }}>
         <Card shadow="xl">
-          <Text size="xl" weight={600}>
+          <Text size="xl"  align= "center" weight={600}>
             User Login
           </Text>
           <form onSubmit={form.onSubmit((values) => login(values))}>
@@ -70,7 +71,7 @@ function Login() {
               <PasswordInput
                 placeholder="Password"
                 icon={<Lock size={19} />}
-                style={{ marginTop: 10 }}
+                style={{ marginTop: 5 }}
                 label="Password"
                 required
                 {...form.getInputProps("password")}
@@ -78,18 +79,20 @@ function Login() {
             </div>
 
             <Group mt="xl" position="center">
-              <Submit name="Login" />
+              <Submit name="Login"/>
             </Group>
             <br />
-            <SimpleGrid spacing="xs" cols={3}>
-              <Text size="sm" variant="link">
+            <div class="base">
+            
+              <Text  variant="link">
                 Forgot your password?
               </Text>
-              <Divider sx={{ height: "50px" }} orientation="vertical" />
-              <Text size="sm" variant="link">
+              <Divider sx={{ height: "50px" }} orientation="vertical"/>
+              <Text variant="link">
                 Sign in
               </Text>
-            </SimpleGrid>
+              
+            </div>
           </form>
         </Card>
       </div>

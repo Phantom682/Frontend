@@ -1,5 +1,6 @@
 import { z } from "zod";
 import React from "react";
+import { SimpleGrid } from '@mantine/core';
 import { useForm, zodResolver } from "@mantine/form";
 import { TextInput, PasswordInput, Box, Select, Group } from "@mantine/core";
 import Submit from "../Button/Button.js";
@@ -8,6 +9,7 @@ import { OtpContext } from "./context.js";
 import { useContext, useState } from "react";
 import { DatePicker } from "@mantine/dates";
 import { At, Lock } from "tabler-icons-react";
+import './Signup.css';
 
 const schema = z.object({
   name: z.string().max(20, { message: "Name should have atmost 20 letters" }),
@@ -65,28 +67,30 @@ function Signup({ nextStep }) {
         className="form"
         onSubmit={form.onSubmit((values) => signUp(values))}
       >
-        <div className="row">
+        <SimpleGrid cols={2}>
+
           <TextInput
             required
-            className="input col-md-6"
+            className="input"
             label="First Name"
             placeholder="Enter your First Name"
-            mt="sm"
             {...form.getInputProps("name")}
           />
           <TextInput
             required
-            className="input col-md-6"
+            className="input "
             label="Last Name"
             placeholder="Enter your Last Name"
             {...form.getInputProps("surname")}
           />
-        </div>
-        <div className="row">
+
+        </SimpleGrid>
+        <SimpleGrid cols={2}>
+
           <DatePicker
             required
             placeholder="Birth Date"
-            className="input col-md-6"
+            className="input "
             label="Birth Date"
             {...form.getInputProps("birthDate")}
           />
@@ -96,7 +100,7 @@ function Signup({ nextStep }) {
             required
             label="Gender"
             placeholder="Pick one"
-            className="input col-md-6"
+            className="input "
             data={[
               { value: "male", label: "Male" },
               { value: "female", label: "Female" },
@@ -104,28 +108,32 @@ function Signup({ nextStep }) {
             ]}
             {...form.getInputProps("gender")}
           />
-        </div>
+        </SimpleGrid>
 
-        <div className="row">
-          <TextInput
-            required
-            icon={<At size={19} />}
-            label="Email"
-            className="input"
-            placeholder="your@email.com"
-            {...form.getInputProps("email")}
-          />
-          <PasswordInput
-            required
-            icon={<Lock size={19} />}
-            label="Password"
-            className="input "
-            placeholder="Password"
-            {...form.getInputProps("password")}
-          />
-        </div>
-        <Group mt="xl"  position="center">
-          <Submit name="Submit"/>
+
+        <SimpleGrid cols={1}>
+        <TextInput
+          required
+          icon={<At size={19} />}
+          label="Email"
+          className="input"
+          placeholder="your@email.com"
+          {...form.getInputProps("email")}
+        />
+        </SimpleGrid>
+        <SimpleGrid cols={1}>
+        <PasswordInput
+          required
+          icon={<Lock size={19} />}
+          label="Password"
+          className="input "
+          placeholder="Password"
+          {...form.getInputProps("password")}
+        />
+        </SimpleGrid>
+
+        <Group mt="xl" position="center">
+          <Submit name="Submit" />
         </Group>
       </form>
     </Box>

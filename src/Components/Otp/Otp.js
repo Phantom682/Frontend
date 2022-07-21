@@ -2,6 +2,7 @@ import { TextInput, Box, Button, Group, Card, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { z } from "zod";
+import { SimpleGrid } from '@mantine/core';
 import { useForm, zodResolver } from "@mantine/form";
 import { useContext } from "react";
 import { OtpContext } from "../Signup/context.js";
@@ -43,21 +44,24 @@ function Otp() {
   });
 
   return (
-    <div style={{ width: 400, margin: "auto", marginTop: 100 }}>
+    <div style={{ width: 350, margin: "auto", marginTop: 100 }}>
       <Card shadow="xl">
-        <Text size="xl" weight={600}>
+        <Text size="xl" align= "center" weight={600}>
           Email Verification
         </Text>
         <form onSubmit={form.onSubmit((values) => otp(values))}>
+        <div style={{ marginTop: 25 }}>
+        <SimpleGrid cols={1}>
           <TextInput
             required
             label="Enter your OTP"
-            className="input col-xl-11"
             placeholder="Enter Otp"
             type="number"
             value={otp}
             {...form.getInputProps("otp")}
           />
+          </SimpleGrid>
+          </div>
 
           <Group mt="xl" position="center">
             <Submit name="Submit" />

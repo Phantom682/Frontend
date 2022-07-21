@@ -1,99 +1,184 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
-body{
-	font-family: 'Roboto', sans-serif;
-}
-* {
+
+*{
 	margin: 0;
 	padding: 0;
 }
-img {
-	width: 40px;
-	margin-left: 30px;
-  }
 
-i {
-	margin-right: 10px;
+body{
+	font-family: 'Manrope', sans-serif;
 }
-.navbar-logo{
-	padding: 15px;
-	color: #fff;
-    margin-left: 10px;
+
+.main-nav{
+	width: 100%;
+	height: 7vh;
+	/* border: 1px solid #000; */
+	display: flex;
+	flex-direction: row;
+	background: linear-gradient(180deg, #4D77FF 0%, #0009DD 100%);
 }
-.navbar-mainbg{
-	background-color: #769FCD;
-	padding: 0px;
+
+.left-side{
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
-#navbarSupportedContent{
-	overflow: hidden;
-	position: relative;
+
+.right-side{
+	width: 50%;
 }
-#navbarSupportedContent ul{
-	padding: 0px;
-	margin: 0px;
+
+.emblem-logo{
+	width: 3.8%;
 }
-#navbarSupportedContent ul li a i{
-	margin-right: 10px;
+
+.divider{
+	font-size: 35px;
 }
-#navbarSupportedContent li {
-	list-style-type: none;
+
+.emblem-text-a{
+	width: 100%;
+	gap: 1%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	text-decoration: none;
+	color: white;
+	pointer-events: none
+}
+
+.sub-left-side{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	gap: 2%;
+	align-items: center;
+	margin-left: 2vw;
+}
+
+.sub-right-side{
+	width: 55%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	float: right;
+	gap: 4%;
+	margin-right: 2vw;
+	align-items: center;
+	margin-left: 2vw;
+}
+
+.top-nav-right{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	margin-top: auto;
+	margin-bottom: auto;
+	align-items: center;
+	font-size: 12px;
+	border-right: 1px solid white;
+	gap: 10px;
+}
+
+.nav-list{
+	display: flex;
+	align-items: center;
+	color: white;
+}
+
+.english-marathi-text-right{
+	width: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.english-marathi-text-left{
+	width: 36%;
+	float: right;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+
+}
+
+p{
+	margin: 0;
+	padding: 0;
+}
+
+.right-side-text{
 	float: left;
 }
-#navbarSupportedContent ul li a{
-    left: 600px;
-	color: #D6E6F2;
-    text-decoration: none;
-    font-size: 15px;
-    display: block;
-    padding: 20px 20px;
-    transition-duration:0.6s;
-	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    position: relative;
-}
-#navbarSupportedContent>ul>li.active>a{
-	color: #5161ce;
-	background-color: transparent;
-	transition: all 0.7s;
-}
-#navbarSupportedContent a:not(:only-child):after {
-	content: "\f105";
-	position: absolute;
-	right: 20px;
-	top: 10px;
-	font-size: 14px;
-	font-family: "Font Awesome 5 Free";
-	display: inline-block;
-	padding-right: 3px;
-	vertical-align: middle;
-	font-weight: 900;
-	transition: 0.5s;
-}
-#navbarSupportedContent .active>a:not(:only-child):after {
-	transform: rotate(90deg);
+
+.left-side-text{
+	float: right;
 }
 
+.flag{
+	width: 5%;
+}
 
-
-@media(min-width: 992px){
-	.navbar-expand-custom {
-	    -ms-flex-flow: row nowrap;
-	    flex-flow: row nowrap;
-	    -ms-flex-pack: start;
-	    justify-content: flex-start;
+@media(max-width: 986px){
+	.main-nav{
+		width: 100%;
+		height: 100%;
+		border: 1px solid #000;
+		display: flex;
+		flex-direction: column;
 	}
-	.navbar-expand-custom .navbar-nav {
-	    -ms-flex-direction: row;
-	    flex-direction: row;
+
+	.left-side{
+		width: 100%;
+		display: flex;
+		justify-content: center;
 	}
-	.navbar-expand-custom .navbar-toggler {
-	    display: none;
+
+	.right-side{
+		width: 100%;
 	}
-	.navbar-expand-custom .navbar-collapse {
-	    display: -ms-flexbox!important;
-	    display: flex!important;
-	    -ms-flex-preferred-size: auto;
-	    flex-basis: auto;
+
+	p{
+		margin: 0;
+		padding: 0;
+	}
+
+	.sub-left-side{
+		display: flex;
+		flex-direction: column;
+		gap: 2%;
+		align-items: center;
+		margin-left: 0;
+	}
+
+	.nav-list{
+		display: none;
+	}
+
+	.top-nav-right{
+		width: 15%;
+	}
+
+	.emblem-text-a{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-decoration: none;
+	}
+
+	.divider{
+		display: none;
+	}
+
+	.english-marathi-text-left,.english-marathi-text-right{
+		text-align: center;
+	}
+
+	.text-align{
+		display: flex;
+		justify-content: center;
 	}
 }
-
-

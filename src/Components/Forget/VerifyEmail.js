@@ -1,4 +1,4 @@
-import { TextInput, Box, Button, Group, Card } from "@mantine/core";
+import { TextInput, SimpleGrid, Group, Card, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import { z } from "zod";
@@ -12,7 +12,7 @@ const schema = z.object({
   email: z.string(),
 });
 
-function VerifyEmail() {
+function VerifyEmail({ nextStep }) {
   let Navigate = useNavigate();
   const { userId, setUserId } = useContext(OtpContext);
 
@@ -34,6 +34,7 @@ function VerifyEmail() {
       userId: data.data.userId,
     });
     Navigate("/votp", { replace: true });
+    nextStep(1);
   }
 
   const form = useForm({
@@ -44,10 +45,15 @@ function VerifyEmail() {
   });
 
   return (
-    <div style={{ width: 400, margin: "auto" }}>
-      <Card shadow="xl">
-        <Box>
-          <form onSubmit={form.onSubmit((values) => verifyEmail(values))}>
+
+    <div style={{ width: 300, margin: 'auto', marginTop: "1%" }}>
+      <Card shadow="sm" p="lg">
+        <Text size="xl" align="center" weight={600}>
+          Enter Your Email
+        </Text>
+        <form onSubmit={form.onSubmit((values) => verifyEmail(values))}>
+          <div style={{ marginTop: 10 }}>
+          <SimpleGrid cols={1}>
             <TextInput
               required
               icon={<At size={19} />}
@@ -56,14 +62,17 @@ function VerifyEmail() {
               placeholder="your@email.com"
               {...form.getInputProps("email")}
             />
+            </SimpleGrid>
 
             <Group mt="xl" position="center">
               <Submit name="Generate Otp" />
             </Group>
-          </form>
-        </Box>
+          </div>
+
+        </form>
       </Card>
     </div>
+
   );
 }
 
