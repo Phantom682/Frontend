@@ -15,14 +15,10 @@ import VerifyEmail from "./Components/Forget/VerifyEmail.js";
 import { OtpContext } from "./Components/Signup/context.js";
 import { EmailContext } from "./Components/Signup/context.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React, { useState } from "react";
+
 import Navbar2 from "./Components/Navbar/Navbar2.js";
-import {OtpContext} from "./Components/Signup/context.js";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+
+
 import React, { useState } from 'react';
 import Stepper2 from "./Components/Stepper/Stepper2";
 

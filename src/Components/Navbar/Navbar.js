@@ -31,10 +31,10 @@ function Navbar() {
       </div>
       <div className="right-side">
         <div className="sub-right-side">
-          <div className="top-nav-right"><Avatar size="sm" src={null} alt="no image here" /><div className='nav-list'>Home</div></div>
-          <div className="top-nav-right"><Avatar size="sm" src={null} alt="no image here" /><div className='nav-list'>Contact Us</div></div>
-          <div className="top-nav-right"><Avatar size="sm" src={null} alt="no image here" /><div className='nav-list'>About Us</div></div>
-          <div className="top-nav-right"><Avatar size="sm" src={null} alt="no image here" /><div className='nav-list'>FAQ/Help</div></div>
+          <div className="top-nav-right"><Avatar size="md" src={"https://img.icons8.com/external-filled-outline-perfect-kalash/64/000000/external-contact-us-e-commerce-and-shopping-filled-outline-perfect-kalash.png"} alt="no image here" /><div className='nav-list'>Contact Us</div></div>
+          <div className="top-nav-right"><Avatar size="md" src={"https://img.icons8.com/doodle/100/000000/person-at-home.png"} alt="no image here" /><div className='nav-list'>Home</div></div>
+          <div className="top-nav-right"><Avatar size="md" src={"https://img.icons8.com/office/100/000000/about-us-male--v2.png"} alt="no image here" /><div className='nav-list'>About Us</div></div>
+          <div className="top-nav-right"><Avatar size="md" src={"https://img.icons8.com/office/16/000000/faq.png"} alt="no image here" /><div className='nav-list'>FAQ/Help</div></div>
         </div>
       </div>
     </nav>
