@@ -1,11 +1,11 @@
 import { z } from "zod";
 import React from "react";
 import { useForm, zodResolver } from "@mantine/form";
-import { TextInput, PasswordInput, Box, Select, Group, Card } from "@mantine/core";
+import { TextInput, Text, Select, Group, Card, SimpleGrid } from "@mantine/core";
 import Submit from "../Button/Button.js";
 import { useNavigate } from "react-router-dom";
 import { At } from "tabler-icons-react";
-{/*import { OtpContext } from "./context.js";*/}
+{/*import { OtpContext } from "./context.js";*/ }
 
 
 
@@ -22,9 +22,9 @@ const schema = z.object({
     .min(6, { message: "Password length should be min 6 characters" }),
 });
 
-function Basic(){
+function Basic({ nextStep }) {
   let Navigate = useNavigate();
-  
+
 
   const form = useForm({
     schema: zodResolver(schema),
@@ -32,14 +32,14 @@ function Basic(){
       name: "",
       surname: "",
       email: "",
-     
+
       gender: "",
       number: "",
-     
+
     },
   });
 
-  {/*async function signUp(values) {
+  async function signUp(values) {
     // console.log(values);
     const result = await fetch(
       process.env.REACT_APP_API_URL + "/user/create_user",
@@ -54,84 +54,92 @@ function Basic(){
     );
     const data = await result.json();
     // console.log(data);
-    setUserId({
-      userId: data.data.userId,
-    });
+    // setUserId({
+    //   userId: data.data.userId,
+    // });
     nextStep(1);
-  }*/
+  }
+
 
   return (
-    <Box sx={{ maxWidth: 400 }} mx="auto">
+    <div style={{ width: 400, margin: "auto", marginTop: 50 }}>
       <Card shadow="xl">
-      <form
-        className="form"
-        onSubmit={form.onSubmit((values) => console.log(values))}
-      >
-        <div className="row">
-        
-          <TextInput
-            required
-            className="input col-md-6"
-            label="First Name"
-            placeholder="Enter your First Name"
-            mt="sm"
-            {...form.getInputProps("name")}
-          />
-          <TextInput
-            required
-            className="input col-md-6"
-            label="Last Name"
-            placeholder="Enter your Last Name"
-            {...form.getInputProps("surname")}
-          />
-        </div>
-        <div className="row">
-          
-          <Select
-            searchable
-            clearable
-            required
-            label="Gender"
-            placeholder="Pick one"
-            className="input col-md-6"
-            data={[
-              { value: "male", label: "Male" },
-              { value: "female", label: "Female" },
-              { value: "transgender", label: "Transgender" },
-            ]}
-            {...form.getInputProps("gender")}
-            
-          />
-           <TextInput
-            required
-            className="input col-md-6"
-            label="Phone Number"
-            placeholder="Enter your Number"
-            mt="sm"
-            type="number"
-            {...form.getInputProps("number")}
-          />
-        </div>
+        <Text size="xl" align="center" weight={600}>
+          Basic Details
+        </Text>
+        <form
+          className="form"
+          onSubmit={form.onSubmit((values) => console.log(values))}
+        >
 
-        <div className="row">
-          <TextInput
-            required
-            icon={<At size={19} />}
-            label="Email"
-            className="input"
-            placeholder="your@email.com"
-            {...form.getInputProps("email")}
-          />
-          
-        </div>
-        <Group mt="xl"  position="center">
-          <Submit name="Submit"/>
-        </Group>
-      </form>
+          <SimpleGrid cols={2}>
+
+            <TextInput
+              required
+              className="input "
+              label="First Name"
+              placeholder="Enter your First Name"
+
+              {...form.getInputProps("name")}
+            />
+            <TextInput
+              required
+              className="input"
+              label="Last Name"
+              placeholder="Enter your Last Name"
+              {...form.getInputProps("surname")}
+            />
+          </SimpleGrid>
+          <SimpleGrid cols={2}>
+
+
+            <Select
+              searchable
+              clearable
+              required
+              label="Gender"
+              placeholder="Pick one"
+              className="input "
+              data={[
+                { value: "male", label: "Male" },
+                { value: "female", label: "Female" },
+                { value: "transgender", label: "Transgender" },
+              ]}
+              {...form.getInputProps("gender")}
+
+            />
+            <TextInput
+              required
+              className="input "
+              label="Phone Number"
+              placeholder="Enter your Number"
+              type="number"
+              {...form.getInputProps("number")}
+            />
+          </SimpleGrid>
+
+
+          <SimpleGrid cols={1}>
+            <TextInput
+              required
+              icon={<At size={19} />}
+              label="Email"
+              className="input"
+              placeholder="your@email.com"
+              {...form.getInputProps("email")}
+            />
+          </SimpleGrid>
+
+
+          <Group mt="xl" position="center">
+            <Submit name="Submit" />
+          </Group>
+        </form>
       </Card>
-    </Box>
+    </div>
+
   );
 }
 
-}
+
 export default Basic;

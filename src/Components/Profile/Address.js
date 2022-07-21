@@ -2,7 +2,7 @@ import { z } from "zod";
 import React from "react";
 import { useForm, zodResolver } from "@mantine/form";
 import { SimpleGrid } from '@mantine/core';
-import { TextInput, PasswordInput, Box, Select, Group, Card } from "@mantine/core";
+import { TextInput, Text, Select, Group, Card } from "@mantine/core";
 import Submit from "../Button/Button.js";
 import { useNavigate } from "react-router-dom";
 import { At } from "tabler-icons-react";
@@ -23,7 +23,7 @@ const schema = z.object({
     .min(6, { message: "Password length should be min 6 characters" }),
 });
 
-function Address() {
+function Address({ nextStep }) {
   let Navigate = useNavigate();
 
 
@@ -39,7 +39,7 @@ function Address() {
     },
   });
 
-  {/*async function signUp(values) {
+  async function signUp(values) {
     // console.log(values);
     const result = await fetch(
       process.env.REACT_APP_API_URL + "/user/create_user",
@@ -54,15 +54,18 @@ function Address() {
     );
     const data = await result.json();
     // console.log(data);
-    setUserId({
-      userId: data.data.userId,
-    });
+    // setUserId({
+    //   userId: data.data.userId,
+    // });
     nextStep(1);
-  }*/
+  }
 
-    return (
-      <Box sx={{ maxWidth: 400 }} mx="auto">
-        <Card shadow="xl">
+  return (
+    <div style={{ width: 400, margin: "auto", marginTop: 50 }}>
+      <Card shadow="xl">
+        <Text size="xl" align="center" weight={600}>
+          Basic Details
+        </Text>
         <form
           className="form"
           onSubmit={form.onSubmit((values) => console.log(values))}
@@ -75,70 +78,70 @@ function Address() {
               placeholder="Enter your Address"
               {...form.getInputProps("address")}
             />
-          <Select
-            searchable
-            clearable
-            required
-            label="Country"
-            placeholder="Pick one"
-            className="input"
-            data={[
-              { value: "male", label: "Male" },
-              { value: "female", label: "Female" },
-              { value: "transgender", label: "Transgender" },
-            ]}
-            {...form.getInputProps("gender")}
-          />
-           </SimpleGrid>
-          
-           <SimpleGrid cols={2}>
-          <Select
-            searchable
-            clearable
-            required
-            label="State"
-            placeholder="Pick one"
-            className="input"
-            data={[
-              { value: "male", label: "Male" },
-              { value: "female", label: "Female" },
-              { value: "transgender", label: "Transgender" },
-            ]}
-            {...form.getInputProps("gender")}
-          />
+            <Select
+              searchable
+              clearable
+              required
+              label="Country"
+              placeholder="Pick one"
+              className="input"
+              data={[
+                { value: "male", label: "Male" },
+                { value: "female", label: "Female" },
+                { value: "transgender", label: "Transgender" },
+              ]}
+              {...form.getInputProps("gender")}
+            />
+          </SimpleGrid>
 
-          <Select
-            searchable
-            clearable
-            required
-            label="District"
-            placeholder="Pick one"
-            className="input"
-            data={[
-              { value: "male", label: "Male" },
-              { value: "female", label: "Female" },
-              { value: "transgender", label: "Transgender" },
-            ]}
-            {...form.getInputProps("gender")}
-          />
+          <SimpleGrid cols={2}>
+            <Select
+              searchable
+              clearable
+              required
+              label="State"
+              placeholder="Pick one"
+              className="input"
+              data={[
+                { value: "male", label: "Male" },
+                { value: "female", label: "Female" },
+                { value: "transgender", label: "Transgender" },
+              ]}
+              {...form.getInputProps("gender")}
+            />
+
+            <Select
+              searchable
+              clearable
+              required
+              label="District"
+              placeholder="Pick one"
+              className="input"
+              data={[
+                { value: "male", label: "Male" },
+                { value: "female", label: "Female" },
+                { value: "transgender", label: "Transgender" },
+              ]}
+              {...form.getInputProps("gender")}
+            />
           </SimpleGrid>
           <SimpleGrid cols={2}>
-          <Select
-            searchable
-            clearable
-            required
-            label="City"
-            placeholder="Pick one"
-            className="input"
-            data={[
-              { value: "male", label: "Male" },
-              { value: "female", label: "Female" },
-              { value: "transgender", label: "Transgender" },
-            ]}
-            {...form.getInputProps("gender")}
-          />
+            <Select
+              searchable
+              clearable
+              required
+              label="City"
+              placeholder="Pick one"
+              className="input"
+              data={[
+                { value: "male", label: "Male" },
+                { value: "female", label: "Female" },
+                { value: "transgender", label: "Transgender" },
+              ]}
+              {...form.getInputProps("gender")}
+            />
 
-  
+
             <TextInput
               required
               label="Pincode"
@@ -147,18 +150,19 @@ function Address() {
 
               {...form.getInputProps("pincode")}
             />
-            </SimpleGrid>
-           
+          </SimpleGrid>
 
-      
+
+
           <Group mt="xl" position="center">
             <Submit name="Submit" />
           </Group>
         </form>
-        </Card>
-      </Box>
-    );
-  }
+      </Card>
+    </div>
 
+  );
 }
+
+
 export default Address;
