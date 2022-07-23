@@ -48,7 +48,7 @@ export default function Signup2() {
                 <Box
                 
                     sx={{
-                        marginTop: 8,
+                        marginTop: 5,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -64,9 +64,9 @@ export default function Signup2() {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <Card sx={{ minWidth: 500 }}>
+                    <Card sx={{ maxWidth: 450 }}>
 
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }} m={3} pt={2}>
                     
                    
                         <Grid container spacing={2}>

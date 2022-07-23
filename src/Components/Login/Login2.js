@@ -34,7 +34,7 @@ export default function Login2() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 5,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -46,8 +46,8 @@ export default function Login2() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Card sx={{ maxnWidth: 450 }}>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Card sx={{ maxWidth: 450 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} m={3} pt={2}>
             <TextField
               margin="normal"
               required
@@ -58,7 +58,8 @@ export default function Login2() {
               autoComplete="email"
               autoFocus
             />
-            <TextField
+            <TextField 
+            
               margin="normal"
               required
               fullWidth

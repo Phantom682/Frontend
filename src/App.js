@@ -16,6 +16,7 @@ import { OtpContext } from "./Components/Signup/context.js";
 import { EmailContext } from "./Components/Signup/context.js";
 import Signup2 from "./Components/Signup/Signup2.js";
 import Login2 from "./Components/Login/Login2.js";
+import Profile2 from "./Components/Profile/Profile2.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
@@ -38,12 +39,12 @@ function App() {
       <OtpContext.Provider value={{ userId, setUserId }}>
         <EmailContext.Provider value={{ email, setEmail }}>
           <Router>
-            <Navbar2/>
+            <Navbar2 />
             <Navbar />
             <Routes>
               <Route path="/" element={<Steppers />} />
               <Route path="/step" element={<Stepper2 />} />
-              
+
               <Route path="/vemail" element={<VerifyEmail />} />
               <Route path="/login" element={<Login />} />
               <Route exact path="/otpvr" element={<Otp />} />
@@ -52,6 +53,7 @@ function App() {
               <Route exact path="/profile" element={<Profile />} />
               <Route path="/signup" element={<Signup2 />} />
               <Route path="/login2" element={<Login2 />} />
+              <Route path="/profile2" element={<Profile2 />} />
             </Routes>
             <Footer />
           </Router>
