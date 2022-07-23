@@ -2,6 +2,7 @@ import { Tabs } from '@mantine/core';
 import { AddressBook, ListDetails } from 'tabler-icons-react';
 import Address from './Address.js';
 import Basic from './Basic.js';
+import * as React from 'react';
 
 function profile() {
   return (

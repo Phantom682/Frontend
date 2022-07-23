@@ -1,4 +1,5 @@
 import { Avatar } from '@mantine/core';
+import * as React from 'react';
 
 function Navbar() {
   return (

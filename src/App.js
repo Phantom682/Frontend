@@ -14,7 +14,10 @@ import VerifyOtp from "./Components/Forget/VerifyOtp.js";
 import VerifyEmail from "./Components/Forget/VerifyEmail.js";
 import { OtpContext } from "./Components/Signup/context.js";
 import { EmailContext } from "./Components/Signup/context.js";
+import Signup2 from "./Components/Signup/Signup2.js";
+import Login2 from "./Components/Login/Login2.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 import Navbar2 from "./Components/Navbar/Navbar2.js";
 
@@ -47,6 +50,8 @@ function App() {
               <Route exact path="/votp" element={<VerifyOtp />} />
               <Route exact path="/newpass" element={<ResetPassword />} />
               <Route exact path="/profile" element={<Profile />} />
+              <Route path="/signup" element={<Signup2 />} />
+              <Route path="/login2" element={<Login2 />} />
             </Routes>
             <Footer />
           </Router>
