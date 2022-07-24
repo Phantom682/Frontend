@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React , { useState } from 'react';
 import { Stepper, Button, Group, Card } from '@mantine/core';
 import {
     UserCheck,
@@ -9,7 +9,6 @@ import {
 import ResetPassword from "../Forget/ResetPassword.js";
 import VerifyEmail from "../Forget/VerifyEmail.js";
 import VerifyOtp from "../Forget/VerifyOtp.js";
-import "./Stepper.css";
 
 function Stepper2() {
     const [active, setActive] = useState(0);

@@ -9,7 +9,6 @@ import { OtpContext } from "./context.js";
 import { useContext, useState } from "react";
 import { DatePicker } from "@mantine/dates";
 import { At, Lock } from "tabler-icons-react";
-import './Signup.css';
 
 const schema = z.object({
   name: z.string().max(20, { message: "Name should have atmost 20 letters" }),

@@ -1,21 +1,20 @@
-import { TextInput, Box, Button, Group, Card, Text } from "@mantine/core";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
-import { z } from "zod";
-import { SimpleGrid } from '@mantine/core';
-import { useForm, zodResolver } from "@mantine/form";
-import { useContext } from "react";
+import { Typography, TextField, Box, Button, Grid } from "@mui/material";
 import { OtpContext } from "../Signup/context.js";
-import Submit from "../Button/Button.js";
-
-const schema = z.object({
-  userId: z.string(),
-  otp: z.string(),
-});
 
 function Otp() {
   const { userId, setUserId } = useContext(OtpContext);
   let Navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      userId: userId.userId,
+      otp: data.get("otp"),
+    });
+  };
 
   async function otp(values) {
     // console.log(values);
@@ -35,40 +34,46 @@ function Otp() {
     Navigate("/login", { replace: true });
   }
 
-  const form = useForm({
-    schema: zodResolver(schema),
-    initialValues: {
-      userId: userId.userId,
-      otp: "",
-    },
-  });
-
   return (
-    <div style={{ width: 350, margin: "auto", marginTop: 100 }}>
-      <Card shadow="xl">
-        <Text size="xl" align= "center" weight={600}>
-          Email Verification
-        </Text>
-        <form onSubmit={form.onSubmit((values) => otp(values))}>
-        <div style={{ marginTop: 25 }}>
-        <SimpleGrid cols={1}>
-          <TextInput
-            required
-            label="Enter your OTP"
-            placeholder="Enter Otp"
-            type="number"
-            value={otp}
-            {...form.getInputProps("otp")}
-          />
-          </SimpleGrid>
-          </div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <Typography component="h1" variant="h5">
+        Email Verification
+      </Typography>
 
-          <Group mt="xl" position="center">
-            <Submit name="Submit" />
-          </Group>
-        </form>
-      </Card>
-    </div>
+      <Box component="form" noValidate onSubmit={handleSubmit} m={3}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            required
+            size="small"
+            id="otp"
+            name="otp"
+            label="Enter Otp"
+            type="text"
+            onKeyPress={(event) => {
+              if (!/[0-9]/.test(event.key)) {
+                event.preventDefault();
+              }
+            }}
+          />
+        </Grid>
+
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          Submit
+        </Button>
+      </Box>
+    </Box>
   );
 }
 

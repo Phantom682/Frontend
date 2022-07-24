@@ -1,22 +1,18 @@
-import { useForm } from "@mantine/form";
-import { PasswordInput, Group, Button, Box, Card, Text, SimpleGrid } from "@mantine/core";
-import { useNavigate } from "react-router-dom";
 import React from "react";
-import Submit from "../Button/Button.js";
+import { useNavigate } from "react-router-dom";
+import { Typography, TextField, Box, Button, Grid } from "@mui/material";
 
 function ResetPassword({ nextStep }) {
   let Navigate = useNavigate();
-  const form = useForm({
-    initialValues: {
-      password: "",
-      confirmPassword: "",
-    },
 
-    validate: {
-      confirmPassword: (value, values) =>
-        value !== values.password ? "Passwords did not match" : null,
-    },
-  });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      password: data.get("password"),
+      cpassword: data.get("cpassword"),
+    });
+  };
 
   async function resetPassword(values) {
     // console.log(values);
@@ -35,45 +31,64 @@ function ResetPassword({ nextStep }) {
     const data = await result.json();
     // console.log(data);
     Navigate("/login", { replace: true });
-    nextStep(3);
   }
 
   return (
     <>
-
-      <div style={{ width: 340, margin: 'auto', marginTop: "1%" }}>
-        <Card shadow="sm" p="lg">
-          <Text size="xl" align="center" weight={600}>
-            Reset Password
-          </Text>
-          <form onSubmit={form.onSubmit((values) => resetPassword(values))}>
-            <div style={{ marginTop: 10 }}></div>
-            <SimpleGrid cols={1}>
-              <PasswordInput
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Typography align="center" variant="h6">
+          Reset Password
+        </Typography>
+        <Box component="form" noValidate onSubmit={handleSubmit} m={3}>
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            spacing={2}
+          >
+            <Grid item xs={6}>
+              <TextField
+                required
+                fullWidth
+                name="password"
                 label="Password"
-                className="input"
-                placeholder="Password"
-                {...form.getInputProps("password")}
+                type="password"
+                size="small"
+                id="password"
+                autoComplete="new-password"
               />
-            </SimpleGrid>
-
-            <SimpleGrid cols={1}>
-              <PasswordInput
-                mt="sm"
-                label="Confirm password"
-                className="input"
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                required
+                fullWidth
+                name="cpassword"
+                label="Confirm Password"
+                size="small"
+                type="password"
+                id="cpassword"
                 placeholder="Confirm password"
-                {...form.getInputProps("confirmPassword")}
               />
-            </SimpleGrid>
+            </Grid>
+          </Grid>
 
-
-            <Group mt="xl" position="center">
-              <Submit name="Reset" />
-            </Group>
-          </form>
-        </Card>
-      </div>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Reset
+          </Button>
+        </Box>
+      </Box>
     </>
   );
 }

@@ -1,6 +1,5 @@
-import { Button } from "@mantine/core";
+import { Button } from '@mui/material';
 import React from 'react';
-import './Button.css';
 
 function Submit(props) {
   const name = props.name;
@@ -8,9 +7,10 @@ function Submit(props) {
   const type = props.type;
 
   return (
-    <Button className="btn" fullWidth type="submit">
+    <Button sx={{ mt: 3, mb: 2 }} fullWidth variant="contained" >
       {name}
     </Button>
+  
   );
 }
 

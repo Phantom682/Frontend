@@ -1,25 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Typography, TextField, ButtonGroup, Box, Button, Grid } from "@mui/material";
+
 import { OtpContext } from "../Signup/context.js";
 
-function VerifyEmail({ nextStep }) {
-  const { userId, setUserId } = useContext(OtpContext);
+function EnterEmail({ nextStep }) {
   let Navigate = useNavigate();
+  const { userId, setUserId } = useContext(OtpContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      userId: userId.userId,
-      otp: data.get("otp"),
+      email: data.get("email"),
     });
   };
 
-  async function verifyOtp(values) {
-    // console.log(values);
+  async function verifyEmail(values) {
+    console.log(values);
     const result = await fetch(
-      process.env.REACT_APP_API_URL + "/user/verifyOTP",
+      process.env.REACT_APP_API_URL + "/user/forgotPassword",
       {
         method: "POST",
         body: JSON.stringify(values),
@@ -30,8 +30,11 @@ function VerifyEmail({ nextStep }) {
       }
     );
     const data = await result.json();
-    // console.log(data);
-    Navigate("/newpass", { replace: true });
+    console.log(data);
+    setUserId({
+      userId: data.data.userId,
+    });
+    Navigate("/votp", { replace: true });
   }
 
   return (
@@ -44,26 +47,21 @@ function VerifyEmail({ nextStep }) {
         }}
       >
         <Typography align="center" variant="h6">
-          Verify your Email
+          Enter your Email
         </Typography>
+
         <Box component="form" noValidate onSubmit={handleSubmit} m={3}>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
               required
-              id="otp"
-              name="otp"
+              id="email"
+              name="email"
               size="small"
-              label="Enter Otp"
-              onKeyPress={(event) => {
-                if (!/[0-9]/.test(event.key)) {
-                  event.preventDefault();
-                }
-              }}
-             
+              label="Enter your Email"
+              autoComplete="email"
             />
           </Grid>
-
           <Button
             type="submit"
             fullWidth
@@ -78,4 +76,4 @@ function VerifyEmail({ nextStep }) {
   );
 }
 
-export default VerifyEmail;
+export default EnterEmail;
